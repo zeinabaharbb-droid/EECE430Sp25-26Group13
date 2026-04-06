@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}VolleyHub{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'players/css/variables.css' %}">
+    <link rel="stylesheet" href="{% static 'players/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'players/css/components.css' %}">
+    <link rel="stylesheet" href="{% static 'players/css/forms.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Mobile Nav Toggle -->
+    <button class="mobile-nav-toggle" onclick="toggleSidebar()" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class="mobile-overlay" onclick="toggleSidebar()"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-icon">
+                <i class="fas fa-volleyball-ball"></i>
+            </div>
+            <div>
+                <h1>VolleyHub</h1>
+                <span>Player Management</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="{% url 'player_list' %}" class="nav-link {% if nav_active == 'players' %}active{% endif %}">
+                <i class="fas fa-users"></i>
+                Players
+            </a>
+            <a href="{% url 'add_player' %}" class="nav-link {% if nav_active == 'add' %}active{% endif %}">
+                <i class="fas fa-user-plus"></i>
+                Add Player
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="/admin/" class="nav-link" style="margin-bottom: 12px;">
+                <i class="fas fa-shield-halved"></i>
+                Admin Panel
+            </a>
+            <i class="fas fa-volleyball-ball"></i> VolleyHub &copy; 2026
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li class="message {{ message.tags }}">
+                <i class="fas {% if message.tags == 'success' %}fa-check-circle{% elif message.tags == 'error' %}fa-exclamation-circle{% else %}fa-info-circle{% endif %}"></i>
+                {{ message }}
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        VolleyHub &mdash; Volleyball Team Management System
+    </footer>
+
+    <script>
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('open');
+            document.querySelector('.mobile-overlay').classList.toggle('active');
+        }
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,76 @@
+{% extends "players/base.html" %}
+
+{% block title %}Players — VolleyHub{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h2><i class="fas fa-users" style="color: var(--accent); margin-right: 10px;"></i>Players</h2>
+        <p>Manage your team roster</p>
+    </div>
+    <a href="{% url 'add_player' %}" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Add Player
+    </a>
+</div>
+
+{% if players %}
+<div class="table-wrapper">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Date Joined</th>
+                <th>Position</th>
+                <th>Salary/Payment</th>
+                <th>Contact Person</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for player in players %}
+            <tr>
+                <td data-label="ID">
+                    <span class="badge badge-id">#{{ player.id }}</span>
+                </td>
+                <td data-label="Name">
+                    <strong>{{ player.name }}</strong>
+                </td>
+                <td data-label="Date Joined">{{ player.date_joined|date:"M d, Y" }}</td>
+                <td data-label="Position">
+                    <span class="badge badge-position">{{ player.position }}</span>
+                </td>
+                <td data-label="Salary/Payment">
+                    <span class="stat-pill">
+                        <span class="value">${{ player.salary_payment|floatformat:2 }}</span>
+                    </span>
+                </td>
+                <td data-label="Contact">{{ player.contact_person }}</td>
+                <td data-label="Actions">
+                    <div class="table-actions">
+                        <a href="{% url 'edit_player' player.id %}" class="btn btn-ghost btn-sm" title="Edit">
+                            <i class="fas fa-pen"></i> Edit
+                        </a>
+                        <a href="{% url 'delete_player' player.id %}" class="btn btn-danger btn-sm" title="Delete">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="card">
+    <div class="empty-state">
+        <i class="fas fa-users"></i>
+        <h3>No players yet</h3>
+        <p>Start building your roster by adding your first player.</p>
+        <a href="{% url 'add_player' %}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Add First Player
+        </a>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

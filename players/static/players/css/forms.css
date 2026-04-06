@@ -1,0 +1,170 @@
+/* ── Form Layout ── */
+.form-container {
+    max-width: 600px;
+}
+
+.form-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+/* ── Inputs ── */
+.form-input,
+.form-select,
+.form-textarea {
+    width: 100%;
+    padding: 10px 14px;
+    background: var(--bg-input);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    color: var(--text-primary);
+    font-family: var(--font);
+    font-size: 0.9rem;
+    transition: all var(--transition);
+    outline: none;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.form-input::placeholder {
+    color: var(--text-muted);
+}
+
+.form-select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237a8194' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* ── Error States ── */
+.form-group.has-error .form-input,
+.form-group.has-error .form-select {
+    border-color: var(--danger);
+    box-shadow: 0 0 0 3px var(--danger-bg);
+}
+
+.field-error {
+    color: var(--danger);
+    font-size: 0.8rem;
+    margin-top: 6px;
+}
+
+.errorlist {
+    list-style: none;
+    padding: 0;
+    margin: 6px 0 0;
+}
+
+.errorlist li {
+    color: var(--danger);
+    font-size: 0.8rem;
+    padding: 4px 0;
+}
+
+/* ── Form Actions ── */
+.form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+}
+
+/* ── Inline Django form.as_p override ── */
+.styled-form p {
+    margin-bottom: 20px;
+}
+
+.styled-form p label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.styled-form p input[type="text"],
+.styled-form p input[type="number"],
+.styled-form p input[type="date"],
+.styled-form p input[type="email"],
+.styled-form p input[type="url"],
+.styled-form p input[type="tel"],
+.styled-form p textarea,
+.styled-form p select {
+    width: 100%;
+    padding: 10px 14px;
+    background: var(--bg-input);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    color: var(--text-primary);
+    font-family: var(--font);
+    font-size: 0.9rem;
+    transition: all var(--transition);
+    outline: none;
+}
+
+.styled-form p input:focus,
+.styled-form p textarea:focus,
+.styled-form p select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.styled-form p input::placeholder {
+    color: var(--text-muted);
+}
+
+.styled-form .helptext {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 6px;
+}
+
+.styled-form .errorlist {
+    list-style: none;
+    padding: 0;
+    margin: 6px 0 0;
+}
+
+.styled-form .errorlist li {
+    color: var(--danger);
+    font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+    .form-card {
+        padding: 20px;
+    }
+}

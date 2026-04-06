@@ -1,0 +1,26 @@
+{% extends "players/base.html" %}
+
+{% block title %}Delete {{ player.name }} — VolleyHub{% endblock %}
+
+{% block content %}
+<div class="confirm-dialog">
+    <div class="card">
+        <div class="icon-warning">
+            <i class="fas fa-trash-alt"></i>
+        </div>
+        <h3>Delete Player</h3>
+        <p>Are you sure you want to remove <span class="player-name">{{ player.name }}</span> from the roster? This action cannot be undone.</p>
+        <form method="post">
+            {% csrf_token %}
+            <div class="confirm-actions">
+                <a href="{% url 'player_list' %}" class="btn btn-ghost">
+                    <i class="fas fa-times"></i> Cancel
+                </a>
+                <button type="submit" class="btn btn-danger">
+                    <i class="fas fa-trash"></i> Yes, Delete
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
