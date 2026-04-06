@@ -2,6 +2,9 @@
 
 VolleyHub: Django **player list** app with Docker support.
 
+**Author:** Zeinab Harb · EECE430 · Group 13  
+**GitHub:** [@zeinabaharbb-droid](https://github.com/zeinabaharbb-droid)
+
 **Repository:** [EECE430Sp25-26Group13](https://github.com/zeinabaharbb-droid/EECE430Sp25-26Group13)
 
 ## Run with Docker (local)
